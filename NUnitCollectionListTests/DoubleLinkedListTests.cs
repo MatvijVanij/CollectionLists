@@ -9,7 +9,7 @@ namespace NUnitCollectionListTests
     {
         [TestCase(-1, new int[] { 1, 2, 3 }, 99)]
         [TestCase(4, new int[] { 1, 3, 4 }, 99)]
-        public void Indecsator_WhenIndexBigerLengthOrLessZero_ShoudArgumentOutOfRangeException(int index, int[] actualAr, int value)
+        public void Indexer_WhenIndexBigerLengthOrLessZero_ShoudArgumentOutOfRangeException(int index, int[] actualAr, int value)
         {
             Assert.Throws<IndexOutOfRangeException>(() =>
             {
