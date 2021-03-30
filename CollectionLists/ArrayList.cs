@@ -7,6 +7,7 @@ namespace CollectionLists
     public class ArrayList
     {
         private int[] _array;
+
         public const int firstValue = 10;
         public int Length { get; private set; }
 
@@ -26,13 +27,13 @@ namespace CollectionLists
 
         private ArrayList(int[] initArray)
         {
-                Length = 0;
-                _array = new int[initArray.Length];
+            Length = 0;
+            _array = new int[initArray.Length];
 
-                for (int i = 0; i < initArray.Length; i++)
-                {
-                    AddLast(initArray[i]);
-                }
+            for (int i = 0; i < initArray.Length; i++)
+            {
+                AddLast(initArray[i]);
+            }
         }
 
         public static ArrayList Create(int[] initArray)
@@ -41,7 +42,7 @@ namespace CollectionLists
             {
                 return ArrayList.Create(initArray);
             }
-            else 
+            else
             {
                 throw new ArgumentException("No null in on");
             }
@@ -368,31 +369,38 @@ namespace CollectionLists
         public void Sort(bool increaseTrueDecreaseFalse)
         {
 
-                for (int i = 0; i < Length - 1; i++)
+            for (int i = 0; i < Length - 1; i++)
+            {
+                for (int j = i + 1; j < Length; j++)
                 {
-                    for (int j = i + 1; j < Length; j++)
+                    if ((_array[i] > _array[j] && increaseTrueDecreaseFalse) || (_array[i] < _array[j] && !increaseTrueDecreaseFalse))
                     {
-                        if ((_array[i] > _array[j] && increaseTrueDecreaseFalse )|| (_array[i] < _array[j] && !increaseTrueDecreaseFalse))
-                        {
-                            Swap(ref _array[i], ref _array[j]);
-                        }
+                        Swap(ref _array[i], ref _array[j]);
                     }
                 }
+            }
         }
-
+        
         public override string ToString()
         {
-            string str = " ";
-            for (int i = 0; i < Length; i++)
+            if (Length != 0)
             {
-                str += _array[i] + " ";
+                StringBuilder stringBuilder = new StringBuilder($"{_array[Length]}");
+
+                for (int i = 0; i < Length; i++)
+                {
+                    stringBuilder.Append($"{_array[i]}");
+                }
+                return stringBuilder.ToString().Trim();
             }
-            return str;
+
+            return String.Empty;
         }
 
         public override bool Equals(object obj)
         {
             ArrayList List = (ArrayList)obj;
+
             if (this.Length != List.Length)
             {
                 return false;

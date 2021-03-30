@@ -487,13 +487,6 @@ namespace CollectionLists
         //    _tail = current;
         //}
 
-        public void SortDecrease()
-        {
-            DoubleNode new_root = null;
-
-
-        }
-
         public void Sort(bool increaseTrueDecreaseFalse)
         {
             DoubleNode new_root = null;
@@ -590,22 +583,18 @@ namespace CollectionLists
         {
             if (Length != 0)
             {
-
                 DoubleNode current = _root;
-
-                string str = current.Value + " ";
+                StringBuilder stringBuilder = new StringBuilder($"{current.Value}");
 
                 while (!(current.Next is null))
                 {
                     current = current.Next;
-                    str += current.Value + " ";
+                    stringBuilder.Append($"{current.Value}");
                 }
-                return str;
+                return stringBuilder.ToString().Trim();
             }
-            else
-            {
-                return String.Empty;
-            }
+
+            return String.Empty;
         }
 
         private DoubleNode GetNodeByIndex(int index)

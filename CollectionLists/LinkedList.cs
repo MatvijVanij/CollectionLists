@@ -524,21 +524,20 @@ namespace CollectionLists
             if (Length != 0)
             {
                 Node current = _root;
-                string str = current.Value + " ";
+
+                StringBuilder stringBuilder = new StringBuilder($"{current.Value}");
 
                 while (!(current.Next is null))
                 {
                     current = current.Next;
-                    str += current.Value + " ";
+                    stringBuilder.Append($"{current.Value}");
                 }
-                return str;
+                return stringBuilder.ToString().Trim();
             }
-            else
-            {
-                return String.Empty;
-            }
-        }
 
+            return String.Empty;
+
+        }
         public override bool Equals(object obj)
         {
             if (obj is LinkedList || obj is null)
