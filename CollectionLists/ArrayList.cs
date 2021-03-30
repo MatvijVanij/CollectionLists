@@ -7,27 +7,25 @@ namespace CollectionLists
     public class ArrayList
     {
         private int[] _array;
-
+        public const int firstValue = 10;
         public int Length { get; private set; }
 
         public ArrayList()
         {
             Length = 0;
-            _array = new int[10];
+            _array = new int[firstValue];
         }
 
         public ArrayList(int el)
         {
             Length = 0;
-            _array = new int[10];
+            _array = new int[firstValue];
 
             AddFirst(el);
         }
 
-        public ArrayList(int[] initArray)
+        private ArrayList(int[] initArray)
         {
-            if (initArray != null)
-            {
                 Length = 0;
                 _array = new int[initArray.Length];
 
@@ -35,11 +33,19 @@ namespace CollectionLists
                 {
                     AddLast(initArray[i]);
                 }
+        }
+
+        public static ArrayList Create(int[] initArray)
+        {
+            if (initArray != null)
+            {
+                return ArrayList.Create(initArray);
             }
-            else
+            else 
             {
                 throw new ArgumentException("No null in on");
             }
+
         }
 
         public int this[int index]
@@ -57,7 +63,7 @@ namespace CollectionLists
             }
             set
             {
-                if (index >= 0 && index <= Length)
+                if (index >= 0 && index < Length)
                 {
                     _array[index] = value;
                 }
@@ -359,32 +365,19 @@ namespace CollectionLists
             }
         }
 
-        public void SortIncrease()
+        public void Sort(bool increaseTrueDecreaseFalse)
         {
-            for (int i = 0; i < Length - 1; i++)
-            {
-                for (int j = i + 1; j < Length; j++)
-                {
-                    if (_array[i] > _array[j])
-                    {
-                        Swap(ref _array[i], ref _array[j]);
-                    }
-                }
-            }
-        }
 
-        public void SortDecrease()
-        {
-            for (int i = 0; i < Length - 1; i++)
-            {
-                for (int j = i + 1; j < Length; j++)
+                for (int i = 0; i < Length - 1; i++)
                 {
-                    if (_array[i] < _array[j])
+                    for (int j = i + 1; j < Length; j++)
                     {
-                        Swap(ref _array[i], ref _array[j]);
+                        if ((_array[i] > _array[j] && increaseTrueDecreaseFalse )|| (_array[i] < _array[j] && !increaseTrueDecreaseFalse))
+                        {
+                            Swap(ref _array[i], ref _array[j]);
+                        }
                     }
                 }
-            }
         }
 
         public override string ToString()

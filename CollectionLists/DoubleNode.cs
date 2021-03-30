@@ -17,8 +17,6 @@ namespace CollectionLists
             Value = value;
             Next = null;
             Previous = null;
-
         }
     }
-
 }

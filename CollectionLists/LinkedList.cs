@@ -16,9 +16,7 @@ namespace CollectionLists
         {
             get
             {
-
                 return GetNodeByIndex(index).Value;
-
             }
             set
             {
@@ -47,35 +45,39 @@ namespace CollectionLists
             _tail = _root;
         }
 
-        public LinkedList(int[] values)
+        private LinkedList(int[] values)
         {
-            if (!(values is null))
+            Length = values.Length;
+
+            if (values.Length != 0)
             {
-                Length = values.Length;
 
-                if (values.Length != 0)
+                _root = new Node(values[0]);
+                _tail = _root;
+
+                for (int i = 1; i < values.Length; i++)
                 {
-
-                    _root = new Node(values[0]);
-                    _tail = _root;
-
-                    for (int i = 1; i < values.Length; i++)
-                    {
-                        _tail.Next = new Node(values[i]);
-                        _tail = _tail.Next;
-                    }
-                }
-                else
-                {
-                    _root = null;
-                    _tail = null;
+                    _tail.Next = new Node(values[i]);
+                    _tail = _tail.Next;
                 }
             }
             else
             {
-                throw new NullReferenceException();
+                _root = null;
+                _tail = null;
             }
+        }
 
+        public static LinkedList Create(int[] values)
+        {
+            if (!(values is null))
+            {
+                return new LinkedList(values);
+            }
+            else
+            {
+                throw new NullReferenceException("Double List is null");
+            }
         }
 
         public void AddLast(int value)
@@ -253,9 +255,9 @@ namespace CollectionLists
             {
                 if (Length > nElements)
                 {
-                    Length -= nElements;
                     _tail = GetNodeByIndex(Length - nElements);
                     _tail.Next = null;
+                    Length -= nElements;
                 }
                 else
                 {
@@ -438,62 +440,62 @@ namespace CollectionLists
             }
         }
 
-        public void SortDecrease()
+        public void Sort(bool increaseTrueDecreaseFalse)
         {
             Node new_root = null;
 
-            while (_root != null)
+            if (increaseTrueDecreaseFalse)
             {
-                Node node = _root;
-                _root = _root.Next;
+                while (_root != null)
+                {
+                    Node node = _root;
+                    _root = _root.Next;
 
-                if (new_root == null || node.Value > new_root.Value)
-                {
-                    node.Next = new_root;
-                    new_root = node;
-                }
-                else
-                {
-                    Node current = new_root;
-                    while (current.Next != null && !(node.Value > current.Next.Value))
+                    if (new_root == null || node.Value < new_root.Value)
                     {
-                        current = current.Next;
+                        node.Next = new_root;
+                        new_root = node;
                     }
+                    else
+                    {
+                        Node current = new_root;
+                        while (current.Next != null && !(node.Value < current.Next.Value))
+                        {
+                            current = current.Next;
+                        }
 
-                    node.Next = current.Next;
-                    current.Next = node;
+                        node.Next = current.Next;
+                        current.Next = node;
+                    }
                 }
+                _root = new_root;
             }
-            _root = new_root;
-        }
-
-        public void SortIncrease()
-        {
-            Node new_root = null;
-
-            while (_root != null)
+            else
             {
-                Node node = _root;
-                _root = _root.Next;
+                while (_root != null)
+                {
+                    Node node = _root;
+                    _root = _root.Next;
 
-                if (new_root == null || node.Value < new_root.Value)
-                {
-                    node.Next = new_root;
-                    new_root = node;
-                }
-                else
-                {
-                    Node current = new_root;
-                    while (current.Next != null && !(node.Value < current.Next.Value))
+                    if (new_root == null || node.Value > new_root.Value)
                     {
-                        current = current.Next;
+                        node.Next = new_root;
+                        new_root = node;
                     }
+                    else
+                    {
+                        Node current = new_root;
+                        while (current.Next != null && !(node.Value > current.Next.Value))
+                        {
+                            current = current.Next;
+                        }
 
-                    node.Next = current.Next;
-                    current.Next = node;
+                        node.Next = current.Next;
+                        current.Next = node;
+                    }
                 }
+                _root = new_root;
             }
-            _root = new_root;
         }
 
         public void RemoveByValue(int value)

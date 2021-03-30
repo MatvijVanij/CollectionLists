@@ -13,7 +13,7 @@ namespace NUnitCollectionListTests
         {
             Assert.Throws<IndexOutOfRangeException>(() =>
             {
-                DoubleLinkedList actual = new DoubleLinkedList(actualAr);
+                DoubleLinkedList actual = DoubleLinkedList.Create(actualAr);
 
                 actual[index] = value;
             });
@@ -25,11 +25,11 @@ namespace NUnitCollectionListTests
         [TestCase(00, new int[] { -3, 5, 9, 0, 67, 9, 87, -1 }, new int[] { -3, 5, 9, 0, 67, 9, 87, -1, 00 })]
         public void AddLast_WhenGetValue_ShouldAddToLast(int value, int[] actualArr, int[] expectedArr)
         {
-            DoubleLinkedList actual = new DoubleLinkedList(actualArr);
-            DoubleLinkedList expected = new DoubleLinkedList(expectedArr);
+            DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+            DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.AddLast(value);
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(new int[] { 11, 22, 33 }, new int[] { 1 }, new int[] { 1, 11, 22, 33 })]
@@ -39,12 +39,12 @@ namespace NUnitCollectionListTests
         [TestCase(new int[] { }, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 })]
         public void AddLast_WhenGetList_ShouldAddByLast(int[] newlist, int[] actualArr, int[] expectedArr)
         {
-            DoubleLinkedList list = new DoubleLinkedList(newlist);
-            DoubleLinkedList actual = new DoubleLinkedList(actualArr);
-            DoubleLinkedList expected = new DoubleLinkedList(expectedArr);
+            DoubleLinkedList list = DoubleLinkedList.Create(newlist);
+            DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+            DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.AddLast(list);
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(new int[] { 77 })]
@@ -52,7 +52,7 @@ namespace NUnitCollectionListTests
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                DoubleLinkedList actual = new DoubleLinkedList(actualList);
+                DoubleLinkedList actual = DoubleLinkedList.Create(actualList);
 
                 actual.AddLast(null);
             });
@@ -64,11 +64,11 @@ namespace NUnitCollectionListTests
         [TestCase(00, new int[] { -3, 5, 9, 0, 67, 9, 87, -1 }, new int[] { 00, -3, 5, 9, 0, 67, 9, 87, -1 })]
         public void AddFirst_WhenGetValue_ShouldAddToFirst(int value, int[] actualArr, int[] expectedArr)
         {
-            DoubleLinkedList actual = new DoubleLinkedList(actualArr);
-            DoubleLinkedList expected = new DoubleLinkedList(expectedArr);
+            DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+            DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.AddFirst(value);
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(new int[] { 11, 22, 33 }, new int[] { 1 }, new int[] { 11, 22, 33, 1 })]
@@ -78,12 +78,12 @@ namespace NUnitCollectionListTests
         [TestCase(new int[] { }, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 })]
         public void AddFirst_WhenGetList_ShouldAddListFirst(int[] newlist, int[] actualArr, int[] expectedArr)
         {
-            DoubleLinkedList list = new DoubleLinkedList(newlist);
-            DoubleLinkedList actual = new DoubleLinkedList(actualArr);
-            DoubleLinkedList expected = new DoubleLinkedList(expectedArr);
+            DoubleLinkedList list = DoubleLinkedList.Create(newlist);
+            DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+            DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.AddFirst(list);
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(new int[] { 77, 88, 88, 999, 0 })]
@@ -91,7 +91,7 @@ namespace NUnitCollectionListTests
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                DoubleLinkedList actual = new DoubleLinkedList(actualList);
+                DoubleLinkedList actual = DoubleLinkedList.Create(actualList);
 
                 actual.AddFirst(null);
             });
@@ -104,11 +104,11 @@ namespace NUnitCollectionListTests
         [TestCase(3, 99, new int[] { -3, 5, 9, 0, 67, 9, 87, -1 }, new int[] { -3, 5, 9, 99, 0, 67, 9, 87, -1 })]
         public void AddByIndex_WhenGetValue_ShouldAddValueByIndex(int index, int value, int[] actualArr, int[] expectedArr)
         {
-            DoubleLinkedList actual = new DoubleLinkedList(actualArr);
-            DoubleLinkedList expected = new DoubleLinkedList(expectedArr);
+            DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+            DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.AddByIndex(index, value);
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(5, 11, new int[] { 11, 22, 33 })]
@@ -117,7 +117,7 @@ namespace NUnitCollectionListTests
         {
             Assert.Throws<IndexOutOfRangeException>(() =>
             {
-                DoubleLinkedList actual = new DoubleLinkedList(expectedArr);
+                DoubleLinkedList actual = DoubleLinkedList.Create(expectedArr);
 
                 actual.AddByIndex(index, value);
             });
@@ -132,12 +132,12 @@ namespace NUnitCollectionListTests
         [TestCase(3, new int[] { 11, 22, 33 }, new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 3, 4, 11, 22, 33 })]
         public void AddByIndex_WhenGetList_ShouldAddByIndex(int index, int[] newlist, int[] actualArr, int[] expectedArr)
         {
-            DoubleLinkedList list = new DoubleLinkedList(newlist);
-            DoubleLinkedList actual = new DoubleLinkedList(actualArr);
-            DoubleLinkedList expected = new DoubleLinkedList(expectedArr);
+            DoubleLinkedList list = DoubleLinkedList.Create(newlist);
+            DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+            DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.AddByIndex(index, list);
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(5, new int[] { 11, 22, 33 }, new int[] { 1, 2, 3 })]
@@ -146,8 +146,8 @@ namespace NUnitCollectionListTests
         {
             Assert.Throws<IndexOutOfRangeException>(() =>
             {
-                DoubleLinkedList list = new DoubleLinkedList(listarray);
-                DoubleLinkedList actual = new DoubleLinkedList(expectedArr);
+                DoubleLinkedList list = DoubleLinkedList.Create(listarray);
+                DoubleLinkedList actual = DoubleLinkedList.Create(expectedArr);
 
                 actual.AddByIndex(index, list);
             });
@@ -159,10 +159,10 @@ namespace NUnitCollectionListTests
         [TestCase(6700, 4, new int[] { -3, 5, 9, 0, 6700, 9, 87, -1 })]
         public void GetIndexByValue_WhenGetValue_ShouldIndexForValue(int value, int expected, int[] actualArray)
         {
-            DoubleLinkedList list = new DoubleLinkedList(actualArray);
+            DoubleLinkedList list = DoubleLinkedList.Create(actualArray);
 
             int actual = list.GetIndexByValue(value);
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(1, 100, new int[] { 2, 3, 6 }, new int[] { 2, 100, 6 })]
@@ -171,11 +171,11 @@ namespace NUnitCollectionListTests
         [TestCase(5, 100, new int[] { -3, 67, 5, 9, 67, 0, 67, 9, 87, -1 }, new int[] { -3, 67, 5, 9, 67, 100, 67, 9, 87, -1 })]
         public void ChangeByIndex_WhenGetList_ShouldChangeValueByIndex(int index, int value, int[] actualArr, int[] expectedArr)
         {
-            DoubleLinkedList actual = new DoubleLinkedList(actualArr);
-            DoubleLinkedList expected = new DoubleLinkedList(expectedArr);
+            DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+            DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.ChangeByIndex(index, value);
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(new int[] { }, new int[] { })]
@@ -184,11 +184,11 @@ namespace NUnitCollectionListTests
         [TestCase(new int[] { -3, 5, 9, 0, 67, 9, 87, -1 }, new int[] { 5, 9, 0, 67, 9, 87, -1 })]
         public void RemoveFirst_WhenGetValue_ShouldRemoveFirst(int[] actualArr, int[] expectedArr)
         {
-            DoubleLinkedList actual = new DoubleLinkedList(actualArr);
-            DoubleLinkedList expected = new DoubleLinkedList(expectedArr);
+            DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+            DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.RemoveFirst();
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(new int[] { 1 }, new int[] { })]
@@ -198,11 +198,11 @@ namespace NUnitCollectionListTests
         [TestCase(new int[] { -3, 5, 9, 0, 67, 9, 87, -1 }, new int[] { -3, 5, 9, 0, 67, 9, 87, })]
         public void RemoveLast_WhenGetValue_ShouldRemoveLast(int[] actualArr, int[] expectedArr)
         {
-            DoubleLinkedList actual = new DoubleLinkedList(actualArr);
-            DoubleLinkedList expected = new DoubleLinkedList(expectedArr);
+            DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+            DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.RemoveLast();
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(1, new int[] { }, new int[] { })]
@@ -213,11 +213,11 @@ namespace NUnitCollectionListTests
         [TestCase(4, new int[] { -3, 5, 9, 0, 67, 9, 87, -1 }, new int[] { 67, 9, 87, -1 })]
         public void RemoveFirst_WhenGetNElements_ShouldRemoveFirstNElements(int nElements, int[] actualArr, int[] expectedArr)
         {
-            DoubleLinkedList actual = new DoubleLinkedList(actualArr);
-            DoubleLinkedList expected = new DoubleLinkedList(expectedArr);
+            DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+            DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.RemoveFirst(nElements);
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(3, new int[] { 1, 2, 3 }, new int[] { })]
@@ -227,11 +227,11 @@ namespace NUnitCollectionListTests
         [TestCase(5, new int[] { -3, 5, 9, 0, 67, 9, 87, -1 }, new int[] { -3, 5, 9 })]
         public void RemoveLast_WhenGetNElements_ShouldRemoveLastNElements(int nElements, int[] actualArr, int[] expectedArr)
         {
-            DoubleLinkedList actual = new DoubleLinkedList(actualArr);
-            DoubleLinkedList expected = new DoubleLinkedList(expectedArr);
+            DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+            DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.RemoveLast(nElements);
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(0, new int[] { 1, 2, 3 }, new int[] { 2, 3 })]
@@ -240,11 +240,11 @@ namespace NUnitCollectionListTests
         [TestCase(5, new int[] { -3, 5, 9, 0, 67, 9, 87, -1 }, new int[] { -3, 5, 9, 0, 67, 87, -1 })]
         public void RemoveByIndex_WhenGetIndex_ShouldRemoveValueByIndex(int index, int[] actualArr, int[] expectedArr)
         {
-            DoubleLinkedList actual = new DoubleLinkedList(actualArr);
-            DoubleLinkedList expected = new DoubleLinkedList(expectedArr);
+            DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+            DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.RemoveByIndex(index);
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(5, new int[] { 11, 22, 33 })]
@@ -253,7 +253,7 @@ namespace NUnitCollectionListTests
         {
             Assert.Throws<IndexOutOfRangeException>(() =>
             {
-                DoubleLinkedList actual = new DoubleLinkedList(expectedArr);
+                DoubleLinkedList actual = DoubleLinkedList.Create(expectedArr);
 
                 actual.RemoveByIndex(index);
             });
@@ -267,11 +267,11 @@ namespace NUnitCollectionListTests
         [TestCase(5, 2, new int[] { -3, 5, 9, 0, 67, 9, 87, -1 }, new int[] { -3, 5, 9, 0, 67, -1 })]
         public void RemoveByIndex_WhenGetNElementsAndIndex_ShouldRemoveNElementsbyIndex(int index, int nElements, int[] actualArr, int[] expectedArr)
         {
-            DoubleLinkedList actual = new DoubleLinkedList(actualArr);
-            DoubleLinkedList expected = new DoubleLinkedList(expectedArr);
+            DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+            DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.RemoveByIndex(index, nElements);
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(5, 1, new int[] { 11, 22, 33 })]
@@ -281,7 +281,7 @@ namespace NUnitCollectionListTests
         {
             Assert.Throws<IndexOutOfRangeException>(() =>
             {
-                DoubleLinkedList actual = new DoubleLinkedList(expectedArr);
+                DoubleLinkedList actual = DoubleLinkedList.Create(expectedArr);
 
                 actual.RemoveByIndex(index, nElements);
             });
@@ -293,10 +293,10 @@ namespace NUnitCollectionListTests
         [TestCase(87, new int[] { -3, 5, 9, 0, 67, 9, 87, -1 })]
         public void FindMaxElement_WhenGetList_ShouldValueMax(int expected, int[] actualArray)
         {
-            DoubleLinkedList list = new DoubleLinkedList(actualArray);
+            DoubleLinkedList list = DoubleLinkedList.Create(actualArray);
 
             int actual = list.FindMaxElement();
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(new int[] { })]
@@ -304,7 +304,7 @@ namespace NUnitCollectionListTests
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                DoubleLinkedList actual = new DoubleLinkedList(expectedArr);
+                DoubleLinkedList actual = DoubleLinkedList.Create(expectedArr);
 
                 actual.FindMaxElement();
             });
@@ -316,10 +316,10 @@ namespace NUnitCollectionListTests
         [TestCase(6, new int[] { -3, 5, 9, 0, 67, 9, 87, -1 })]
         public void FindMaxIndex_WhenGetList_ShouldIndexMax(int expected, int[] actualArray)
         {
-            DoubleLinkedList list = new DoubleLinkedList(actualArray);
+            DoubleLinkedList list = DoubleLinkedList.Create(actualArray);
 
             int actual = list.FindMaxIndex();
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(new int[] { })]
@@ -327,7 +327,7 @@ namespace NUnitCollectionListTests
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                DoubleLinkedList actual = new DoubleLinkedList(expectedArr);
+                DoubleLinkedList actual = DoubleLinkedList.Create(expectedArr);
 
                 actual.FindMaxIndex();
             });
@@ -339,10 +339,10 @@ namespace NUnitCollectionListTests
         [TestCase(-3, new int[] { -3, 5, 9, 0, 67, 9, 87, -1 })]
         public void FindMinElement_WhenGetList_ShouldValueMin(int expected, int[] actualArray)
         {
-            DoubleLinkedList list = new DoubleLinkedList(actualArray);
+            DoubleLinkedList list = DoubleLinkedList.Create(actualArray);
 
             int actual = list.FindMinElement();
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(new int[] { })]
@@ -350,7 +350,7 @@ namespace NUnitCollectionListTests
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                DoubleLinkedList actual = new DoubleLinkedList(expectedArr);
+                DoubleLinkedList actual = DoubleLinkedList.Create(expectedArr);
 
                 actual.FindMinElement();
             });
@@ -362,10 +362,10 @@ namespace NUnitCollectionListTests
         [TestCase(6, new int[] { -3, 5, 9, 0, 67, 9, -87, -1 })]
         public void FindMinIndex_WhenGettList_ShouldIndexMin(int expected, int[] actualArray)
         {
-            DoubleLinkedList list = new DoubleLinkedList(actualArray);
+            DoubleLinkedList list = DoubleLinkedList.Create(actualArray);
 
             int actual = list.FindMinIndex();
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(new int[] { })]
@@ -373,7 +373,7 @@ namespace NUnitCollectionListTests
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                DoubleLinkedList actual = new DoubleLinkedList(expectedArr);
+                DoubleLinkedList actual = DoubleLinkedList.Create(expectedArr);
 
                 actual.FindMinIndex();
             });
@@ -387,11 +387,11 @@ namespace NUnitCollectionListTests
         [TestCase(67, new int[] { -3, 5, 9, 0, 67, 9, 87, -1 }, new int[] { -3, 5, 9, 0, 9, 87, -1 })]
         public void RemoveByValue_WhenGetList_ShouldRemoveFistForValue(int value, int[] actualArr, int[] expectedArr)
         {
-            DoubleLinkedList actual = new DoubleLinkedList(actualArr);
-            DoubleLinkedList expected = new DoubleLinkedList(expectedArr);
+            DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+            DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.RemoveByValue(value);
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(4, new int[] { 2, 3, 6 }, new int[] { 2, 3, 6 })]
@@ -402,25 +402,25 @@ namespace NUnitCollectionListTests
         [TestCase(67, new int[] { -3, 67, 5, 9, 67, 0, 67, 9, 87, -1 }, new int[] { -3, 5, 9, 0, 9, 87, -1 })]
         public void RemoveAllByValue_WhenGetList_ShouldRemoveAllByValue(int value, int[] actualArr, int[] expectedArr)
         {
-            DoubleLinkedList actual = new DoubleLinkedList(actualArr);
-            DoubleLinkedList expected = new DoubleLinkedList(expectedArr);
+            DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+            DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.RemoveAllByValue(value);
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected,actual);
         }
 
-        [TestCase(new int[] { }, new int[] { })]
-        [TestCase(new int[] { 1, 2 }, new int[] { 2, 1 })]
-        [TestCase(new int[] { -1, 0, 3 }, new int[] { 3, 0, -1 })]
-        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, new int[] { 6, 5, 4, 3, 2, 1 })]
-        public void Revers_WhenGetList_ShouldRevers(int[] actualArr, int[] expectedArr)
-        {
-            DoubleLinkedList actual = new DoubleLinkedList(actualArr);
-            DoubleLinkedList expected = new DoubleLinkedList(expectedArr);
+        //[TestCase(new int[] { }, new int[] { })]
+        //[TestCase(new int[] { 1, 2 }, new int[] { 2, 1 })]
+        //[TestCase(new int[] { -1, 0, 3 }, new int[] { 3, 0, -1 })]
+        //[TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, new int[] { 6, 5, 4, 3, 2, 1 })]
+        //public void Revers_WhenGetList_ShouldRevers(int[] actualArr, int[] expectedArr)
+        //{
+        //    DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+        //    DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
-            actual.Revers();
-            Assert.AreEqual(actual, expected);
-        }
+        //    actual.Reverse();
+        //    Assert.AreEqual(expected,actual);
+        //}
 
         [TestCase(new int[] { }, new int[] { })]
         [TestCase(new int[] { 2, 3 }, new int[] { 3, 2 })]
@@ -429,11 +429,11 @@ namespace NUnitCollectionListTests
         [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, new int[] { 6, 5, 4, 3, 2, 1 })]
         public void SortDecrease_WhenGetList_ShouldSortDecrease(int[] actualArr, int[] expectedArr)
         {
-            DoubleLinkedList actual = new DoubleLinkedList(actualArr);
-            DoubleLinkedList expected = new DoubleLinkedList(expectedArr);
+            DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+            DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
-            actual.SortDecrease();
-            Assert.AreEqual(actual, expected);
+            actual.Sort(false);
+            Assert.AreEqual(expected,actual);
         }
 
         [TestCase(new int[] { }, new int[] { })]
@@ -443,15 +443,12 @@ namespace NUnitCollectionListTests
         [TestCase(new int[] { -9, 4, -8 }, new int[] { -9, -8, 4 })]
         public void SortIncrease_WhenGetList_ShouldSortIncrease(int[] actualArr, int[] expectedArr)
         {
-            DoubleLinkedList actual = new DoubleLinkedList(actualArr);
-            DoubleLinkedList expected = new DoubleLinkedList(expectedArr);
+            DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+            DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
-            actual.SortIncrease();
-            Assert.AreEqual(actual, expected);
+            actual.Sort(true);
+            Assert.AreEqual(expected,actual);
         }
-
-
-
     }
 }
 

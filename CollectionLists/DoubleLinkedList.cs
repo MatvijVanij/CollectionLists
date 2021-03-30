@@ -45,32 +45,37 @@ namespace CollectionLists
             _tail = _root;
         }
 
-        public DoubleLinkedList(int[] values)
+        private DoubleLinkedList(int[] values)
+        {
+            Length = values.Length;
+
+            if (values.Length != 0)
+            {
+                DoubleNode node = new DoubleNode(values[0]);
+                _root = node;
+                _tail = _root;
+
+                for (int i = 1; i < values.Length; i++)
+                {
+                    DoubleNode current = new DoubleNode(values[i]);
+                    _tail.Next = current;
+                    current.Previous = _tail;
+                    _tail = _tail.Next;
+                }
+            }
+            else
+            {
+                _tail = null;
+                _root = null;
+
+            }
+        }
+
+        public static DoubleLinkedList Create(int[] values)
         {
             if (!(values is null))
             {
-                Length = values.Length;
-
-                if (values.Length != 0)
-                {
-                    DoubleNode node = new DoubleNode(values[0]);
-                    _root = node;
-                    _tail = _root;
-
-                    for (int i = 1; i < values.Length; i++)
-                    {
-                        DoubleNode current = new DoubleNode(values[i]);
-                        _tail.Next = current;
-                        current.Previous = _tail;
-                        _tail = _tail.Next;
-                    }
-                }
-                else
-                {
-                    _tail = null;
-                    _root = null;
-
-                }
+                return new DoubleLinkedList(values);
             }
             else
             {
@@ -465,86 +470,92 @@ namespace CollectionLists
             }
         }
 
-        public void Revers()
-        {
-            DoubleNode current = _root;
-            DoubleNode tmp = _root;
+        //public void Reverse()
+        //{
+        //    DoubleNode current = _root;
+        //    DoubleNode tmp = _root;
 
-            for (int i = 1; i < Length - 1; i++)
-            {
-                tmp = current.Next;
-                current.Next = current.Previous;
-                current.Previous = tmp;
+        //    for (int i = 1; i < Length - 1; i++)
+        //    {
+        //        tmp = current.Next;
+        //        current.Next = current.Previous;
+        //        current.Previous = tmp;
 
-                current = current.Previous;
-            }
-            _root = _tail;
-            _tail = current;
-        }
+        //        current = current.Previous;
+        //    }
+        //    _root = _tail;
+        //    _tail = current;
+        //}
 
         public void SortDecrease()
         {
             DoubleNode new_root = null;
 
-            while (_root != null)
-            {
 
-                DoubleNode node = _root;
-
-                _root = _root.Next;
-
-                if (new_root == null || node.Value > new_root.Value)
-                {
-                    node.Next = new_root;
-                    new_root = node;
-                }
-                else
-                {
-                    DoubleNode current = new_root;
-                    while (current.Next != null && !(node.Value > current.Next.Value))
-                    {
-                        current = current.Next;
-                    }
-
-                    node.Next = current.Next;
-
-                    current.Next = node;
-                }
-            }
-            _root = new_root;
         }
 
-        public void SortIncrease()
+        public void Sort(bool increaseTrueDecreaseFalse)
         {
             DoubleNode new_root = null;
 
-            while (_root != null)
+            if (increaseTrueDecreaseFalse)
             {
-
-                DoubleNode node = _root;
-
-                _root = _root.Next;
-
-                if (new_root == null || node.Value < new_root.Value)
+                while (_root != null)
                 {
-                    node.Next = new_root;
-                    new_root = node;
-                }
-                else
-                {
-                    DoubleNode current = new_root;
-                    while (current.Next != null && !(node.Value < current.Next.Value))
+
+                    DoubleNode node = _root;
+
+                    _root = _root.Next;
+
+                    if (new_root == null || node.Value < new_root.Value)
                     {
-                        current = current.Next;
+                        node.Next = new_root;
+                        new_root = node;
                     }
+                    else
+                    {
+                        DoubleNode current = new_root;
+                        while (current.Next != null && !(node.Value < current.Next.Value))
+                        {
+                            current = current.Next;
+                        }
 
-                    node.Next = current.Next;
+                        node.Next = current.Next;
 
-                    current.Next = node;
+                        current.Next = node;
+                    }
                 }
+                _root = new_root;
             }
-            _root = new_root;
+            else
+            {
+                while (_root != null)
+                {
 
+                    DoubleNode node = _root;
+
+                    _root = _root.Next;
+
+                    if (new_root == null || node.Value > new_root.Value)
+                    {
+                        node.Next = new_root;
+                        new_root = node;
+                    }
+                    else
+                    {
+                        DoubleNode current = new_root;
+                        while (current.Next != null && !(node.Value > current.Next.Value))
+                        {
+                            current = current.Next;
+                        }
+
+                        node.Next = current.Next;
+
+                        current.Next = node;
+                    }
+                }
+                _root = new_root;
+            }
         }
 
         public override bool Equals(object obj)
@@ -599,7 +610,6 @@ namespace CollectionLists
 
         private DoubleNode GetNodeByIndex(int index)
         {
-
             DoubleNode current;
 
             if (index <= Length / 2)
@@ -621,7 +631,6 @@ namespace CollectionLists
                 }
             }
             return current;
-
         }
 
     }
