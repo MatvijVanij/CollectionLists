@@ -7,7 +7,6 @@ namespace CollectionLists
     public class DoubleLinkedList
     {
         private DoubleNode _root;
-
         private DoubleNode _tail;
 
         public int Length { get; private set; }
@@ -26,7 +25,7 @@ namespace CollectionLists
                 }
                 else
                 {
-                    throw new IndexOutOfRangeException("");
+                    throw new IndexOutOfRangeException("string.Empty");
                 }
             }
         }
@@ -52,12 +51,14 @@ namespace CollectionLists
             if (values.Length != 0)
             {
                 DoubleNode node = new DoubleNode(values[0]);
+
                 _root = node;
                 _tail = _root;
 
                 for (int i = 1; i < values.Length; i++)
                 {
                     DoubleNode current = new DoubleNode(values[i]);
+
                     _tail.Next = current;
                     current.Previous = _tail;
                     _tail = _tail.Next;
@@ -67,7 +68,6 @@ namespace CollectionLists
             {
                 _tail = null;
                 _root = null;
-
             }
         }
 
@@ -113,22 +113,20 @@ namespace CollectionLists
             }
             else
             {
-                throw new ArgumentException("null is list for add");
+                throw new ArgumentException("Null is list for add");
             }
-
         }
 
         public void AddFirst(int value)
         {
             if (Length != 0)
             {
-                Length++;
                 DoubleNode node = new DoubleNode(value);
 
                 _root.Previous = node;
                 node.Next = _root;
-
                 _root = node;
+                Length++;
             }
             else
             {
@@ -150,7 +148,7 @@ namespace CollectionLists
             }
             else
             {
-                throw new ArgumentException("null is list for add");
+                throw new ArgumentException("Null is list for add");
             }
 
         }
@@ -169,11 +167,8 @@ namespace CollectionLists
                         node.Next = current.Next;
                         current.Next = node;
                         node.Previous = current;
-
                         node.Next.Previous = node;
-
                         Length++;
-
                     }
                     else
                     {
@@ -186,11 +181,10 @@ namespace CollectionLists
                 {
                     AddFirst(value);
                 }
-
             }
             else
             {
-                throw new IndexOutOfRangeException(" ");
+                throw new IndexOutOfRangeException("Index out of range");
             }
         }
 
@@ -204,16 +198,13 @@ namespace CollectionLists
                     {
                         if (list.Length != 0 && !(list is null))
                         {
-
                             DoubleNode current = GetNodeByIndex(index);
 
                             list._tail.Next = current.Next;
                             current.Next = list._root;
                             list._root.Previous = current;
                             current.Next.Previous = list._tail;
-
                             Length += list.Length;
-
                         }
                     }
                     else
@@ -225,11 +216,10 @@ namespace CollectionLists
                 {
                     AddFirst(list);
                 }
-
             }
             else
             {
-                throw new IndexOutOfRangeException("");
+                throw new IndexOutOfRangeException("Index out of range");
             }
         }
 
@@ -275,9 +265,7 @@ namespace CollectionLists
                     Length = 0;
                     _root = null;
                     _tail = null;
-
                 }
-
             }
         }
 
@@ -297,7 +285,6 @@ namespace CollectionLists
                     _root = null;
                     _tail = null;
                 }
-
             }
         }
 
@@ -310,6 +297,7 @@ namespace CollectionLists
                     if (index != Length - 1)
                     {
                         DoubleNode current = GetNodeByIndex(index);
+
                         current.Previous.Next = current.Next;
                         current.Next.Previous = current.Previous;
                         Length--;
@@ -318,7 +306,6 @@ namespace CollectionLists
                     {
                         RemoveLast();
                     }
-
                 }
                 else
                 {
@@ -327,7 +314,7 @@ namespace CollectionLists
             }
             else
             {
-                throw new IndexOutOfRangeException("");
+                throw new IndexOutOfRangeException("Index out of range");
             }
         }
 
@@ -367,7 +354,7 @@ namespace CollectionLists
             }
             else
             {
-                throw new IndexOutOfRangeException("");
+                throw new IndexOutOfRangeException("Index out of range");
             }
         }
 
@@ -406,17 +393,19 @@ namespace CollectionLists
                 }
                 return max;
             }
+
             throw new ArgumentException("Length list is  zero");
         }
 
         public int FindMaxIndex()
         {
-            if (true)
+            if (Length != 0)
             {
                 int index = GetIndexByValue(FindMaxElement());
 
                 return index;
             }
+
             throw new ArgumentException("Length list is  zero");
         }
 
@@ -434,6 +423,7 @@ namespace CollectionLists
                 }
                 return min;
             }
+
             throw new ArgumentException("Length list is  zero");
         }
 
@@ -444,6 +434,7 @@ namespace CollectionLists
                 int index = GetIndexByValue(FindMinElement());
                 return index;
             }
+
             throw new ArgumentException("Length list is  zero");
         }
 
@@ -456,7 +447,6 @@ namespace CollectionLists
                 RemoveByIndex(index);
                 break;
             }
-
         }
 
         public void RemoveAllByValue(int value)
@@ -470,22 +460,25 @@ namespace CollectionLists
             }
         }
 
-        //public void Reverse()
-        //{
-        //    DoubleNode current = _root;
-        //    DoubleNode tmp = _root;
+        public void Reverse()
+        {
+            if (Length != 0)
+            {
+                DoubleNode _tail = _root.Next;
 
-        //    for (int i = 1; i < Length - 1; i++)
-        //    {
-        //        tmp = current.Next;
-        //        current.Next = current.Previous;
-        //        current.Previous = tmp;
+                _root.Next = null;
 
-        //        current = current.Previous;
-        //    }
-        //    _root = _tail;
-        //    _tail = current;
-        //}
+                while (_tail != null)
+                {
+                    DoubleNode tailNext = _tail.Next;
+
+                    _tail.Next = _root;
+                    _root = _tail;
+                    _tail = tailNext;
+                }
+            }
+            return;
+        }
 
         public void Sort(bool increaseTrueDecreaseFalse)
         {
@@ -495,7 +488,6 @@ namespace CollectionLists
             {
                 while (_root != null)
                 {
-
                     DoubleNode node = _root;
 
                     _root = _root.Next;
@@ -508,13 +500,13 @@ namespace CollectionLists
                     else
                     {
                         DoubleNode current = new_root;
+
                         while (current.Next != null && !(node.Value < current.Next.Value))
                         {
                             current = current.Next;
                         }
 
                         node.Next = current.Next;
-
                         current.Next = node;
                     }
                 }
@@ -524,7 +516,6 @@ namespace CollectionLists
             {
                 while (_root != null)
                 {
-
                     DoubleNode node = _root;
 
                     _root = _root.Next;
@@ -543,7 +534,6 @@ namespace CollectionLists
                         }
 
                         node.Next = current.Next;
-
                         current.Next = node;
                     }
                 }
@@ -553,16 +543,18 @@ namespace CollectionLists
 
         public override bool Equals(object obj)
         {
-            if (obj is DoubleLinkedList || obj is null)
+            if (obj is DoubleLinkedList || !(obj is null))
             {
                 DoubleLinkedList doubleLinkedList = (DoubleLinkedList)obj;
                 bool isflag = false;
+
                 if (this.Length == doubleLinkedList.Length)
                 {
                     isflag = true;
 
                     DoubleNode currentThis = this._root;
                     DoubleNode currentList = doubleLinkedList._root;
+
                     while (!(currentThis is null))
                     {
                         if (currentThis.Value != currentList.Value)
@@ -570,12 +562,15 @@ namespace CollectionLists
                             isflag = false;
                             break;
                         }
+
                         currentThis = currentThis.Next;
                         currentList = currentList.Next;
                     }
                 }
+
                 return isflag;
             }
+
             throw new ArgumentException("obj is null");
         }
 
@@ -591,6 +586,7 @@ namespace CollectionLists
                     current = current.Next;
                     stringBuilder.Append($"{current.Value}");
                 }
+
                 return stringBuilder.ToString().Trim();
             }
 
@@ -621,7 +617,6 @@ namespace CollectionLists
             }
             return current;
         }
-
     }
 }
 

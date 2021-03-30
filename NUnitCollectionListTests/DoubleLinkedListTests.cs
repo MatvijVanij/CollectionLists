@@ -379,7 +379,6 @@ namespace NUnitCollectionListTests
             });
         }
 
-
         [TestCase(4, new int[] { 1, 2, 3, 6 }, new int[] { 1, 2, 3, 6 })]
         [TestCase(1, new int[] { 1, 2, 3, 6 }, new int[] { 2, 3, 6 })]
         [TestCase(-3, new int[] { 1, 2, 3, 4, -3, -5 }, new int[] { 1, 2, 3, 4, -5 })]
@@ -409,18 +408,18 @@ namespace NUnitCollectionListTests
             Assert.AreEqual(expected,actual);
         }
 
-        //[TestCase(new int[] { }, new int[] { })]
-        //[TestCase(new int[] { 1, 2 }, new int[] { 2, 1 })]
-        //[TestCase(new int[] { -1, 0, 3 }, new int[] { 3, 0, -1 })]
-        //[TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, new int[] { 6, 5, 4, 3, 2, 1 })]
-        //public void Revers_WhenGetList_ShouldRevers(int[] actualArr, int[] expectedArr)
-        //{
-        //    DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
-        //    DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
+        [TestCase(new int[] { }, new int[] { })]
+        [TestCase(new int[] { 1, 2 }, new int[] { 2, 1 })]
+        [TestCase(new int[] { -1, 0, 3 }, new int[] { 3, 0, -1 })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, new int[] { 6, 5, 4, 3, 2, 1 })]
+        public void Reverse_WhenGetList_ShouldRevers(int[] actualArr, int[] expectedArr)
+        {
+            DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+            DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
-        //    actual.Reverse();
-        //    Assert.AreEqual(expected,actual);
-        //}
+            actual.Reverse();
+            Assert.AreEqual(expected, actual);
+        }
 
         [TestCase(new int[] { }, new int[] { })]
         [TestCase(new int[] { 2, 3 }, new int[] { 3, 2 })]

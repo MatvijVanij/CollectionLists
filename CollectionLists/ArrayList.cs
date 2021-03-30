@@ -40,7 +40,7 @@ namespace CollectionLists
         {
             if (initArray != null)
             {
-                return ArrayList.Create(initArray);
+                return new ArrayList(initArray);
             }
             else
             {
@@ -100,11 +100,10 @@ namespace CollectionLists
         {
             int index = 0;
             int nElemen = 1;
-            Resize(Length);
 
+            Resize(Length);
             Length++;
             ShiftRight(index, nElemen);
-
             _array[index] = value;
         }
 
@@ -126,11 +125,10 @@ namespace CollectionLists
             if (index >= 0 && index <= Length)
             {
                 int nElement = 1;
-                Resize(Length);
 
+                Resize(Length);
                 Length++;
                 ShiftRight(index, nElement);
-
                 _array[index] = value;
             }
             else
@@ -144,6 +142,7 @@ namespace CollectionLists
             if (index <= Length && index >= 0)
             {
                 int oldLength = Length;
+
                 Length += list.Length;
                 Resize(oldLength);
                 ShiftRight(index + list.Length - 1, list.Length);
@@ -175,6 +174,7 @@ namespace CollectionLists
             {
                 int index = 0;
                 int nElement = 1;
+
                 Length--;
                 ShiftLeft(index, nElement);
             }
@@ -184,6 +184,7 @@ namespace CollectionLists
         public void RemoveByIndex(int index)
         {
             int nElement = 1;
+
             if (index >= 0 && index < Length)
             {
                 if (Length != 0)
@@ -206,7 +207,6 @@ namespace CollectionLists
             {
                 if (nElelements >= 0)
                 {
-
                     Length -= nElelements;
                 }
             }
@@ -216,7 +216,6 @@ namespace CollectionLists
             }
 
             Resize(Length);
-
         }
 
         public void RemoveFirst(int nElelements)
@@ -272,29 +271,14 @@ namespace CollectionLists
             return -1;
         }
 
-        public void ChangeByIndex(int index, int value)
+        public void Reverse()
         {
-            if (index <= Length && index >= 0)
-            {
-                _array[index] = value;
-            }
-            else
-            {
-                throw new IndexOutOfRangeException();
-            }
-        }
-
-        public void Revers()
-        {
-            int temp;
             int swapIndex;
+
             for (int i = 0; i < Length / 2; i++)
             {
                 swapIndex = Length - i - 1;
-                temp = _array[i];
-
-                _array[i] = _array[swapIndex];
-                _array[swapIndex] = temp;
+                Swap(ref _array[i], ref _array[swapIndex]);
             }
         }
 
@@ -313,11 +297,8 @@ namespace CollectionLists
                 }
                 return maxIndexOfElement;
             }
-            else
-            {
-                throw new InvalidOperationException("List is null");
-            }
 
+            throw new InvalidOperationException("List is null");
         }
 
         public int FindMinIndex()
@@ -335,10 +316,8 @@ namespace CollectionLists
                 }
                 return minIndexOfElement;
             }
-            else
-            {
-                throw new InvalidOperationException("List is null");
-            }
+
+            throw new InvalidOperationException("List is null");
         }
 
         public int FindMaxElement()
@@ -368,7 +347,6 @@ namespace CollectionLists
 
         public void Sort(bool increaseTrueDecreaseFalse)
         {
-
             for (int i = 0; i < Length - 1; i++)
             {
                 for (int j = i + 1; j < Length; j++)
@@ -380,7 +358,7 @@ namespace CollectionLists
                 }
             }
         }
-        
+
         public override string ToString()
         {
             if (Length != 0)
@@ -399,23 +377,27 @@ namespace CollectionLists
 
         public override bool Equals(object obj)
         {
-            ArrayList List = (ArrayList)obj;
-
-            if (this.Length != List.Length)
+            if (obj is ArrayList || !(obj is null))
             {
-                return false;
-            }
+                ArrayList List = (ArrayList)obj;
 
-            for (int i = 0; i < Length; i++)
-            {
-                if (this._array[i] != List._array[i])
+                if (this.Length != List.Length)
                 {
                     return false;
                 }
-            }
 
-            return true;
+                for (int i = 0; i < Length; i++)
+                {
+                    if (this._array[i] != List._array[i])
+                    {
+                        return false;
+                    }
+                }
+                return true;
         }
+
+            throw new ArgumentException("obj is null");
+    }
 
         private void Resize(int oldLength)
         {
@@ -442,7 +424,6 @@ namespace CollectionLists
 
         private void ShiftRight(int index, int nElements)
         {
-
             for (int i = Length - 1; i > index; i--)
             {
                 _array[i] = _array[i - nElements];
@@ -451,15 +432,11 @@ namespace CollectionLists
 
         private void ShiftLeft(int index, int nElements)
         {
-
             for (int i = index; i < Length; i++)
             {
                 _array[i] = _array[i + nElements];
             }
-
         }
-
-
     }
 }
 

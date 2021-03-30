@@ -238,9 +238,9 @@ namespace NUnitCollectionListTests
         [TestCase(new int[] { -3, 5, 9, 0, 67, 9, 87, -1 }, 67, 4)]
         public void GetIndexByValue_WhenGetValue_ShouldIndexForValue(int[] actualArray, int value, int expected)
         {
-            ArrayList Array = ArrayList.Create(actualArray);
+            ArrayList array = ArrayList.Create(actualArray);
 
-            int actual = Array.GetIndexByValue(value);
+            int actual = array.GetIndexByValue(value);
             Assert.AreEqual(expected, actual);
         }
 
@@ -250,9 +250,9 @@ namespace NUnitCollectionListTests
         [TestCase(new int[] { -3, 5, 9, 0, 67, 9, 87, -1 }, 87)]
         public void FindMaxElement_WhenGetList_ShouldValueMax(int[] actualArray, int expected)
         {
-            ArrayList Array = ArrayList.Create(actualArray);
+            ArrayList array = ArrayList.Create(actualArray);
 
-            int actual = Array.FindMaxElement();
+            int actual = array.FindMaxElement();
             Assert.AreEqual(expected, actual);
         }
 
@@ -273,9 +273,9 @@ namespace NUnitCollectionListTests
         [TestCase(new int[] { -3, 5, 9, 0, 67, 9, 87, -1 }, 6)]
         public void FindMaxIndex_WhenGetList_ShouldIndexMax(int[] actualArray, int expected)
         {
-            ArrayList Array = ArrayList.Create(actualArray);
+            ArrayList array = ArrayList.Create(actualArray);
 
-            int actual = Array.FindMaxIndex();
+            int actual = array.FindMaxIndex();
             Assert.AreEqual(expected, actual);
         }
 
@@ -319,9 +319,9 @@ namespace NUnitCollectionListTests
         [TestCase(new int[] { -3, 5, 9, 0, 67, 9, -87, -1 }, 6)]
         public void FindMinIndex_WhenGettList_ShouldIndexMin(int[] actualArray, int expected)
         {
-            ArrayList Array = ArrayList.Create(actualArray);
+            ArrayList array = ArrayList.Create(actualArray);
 
-            int actual = Array.FindMinIndex();
+            int actual = array.FindMinIndex();
             Assert.AreEqual(expected, actual);
         }
 
@@ -336,33 +336,6 @@ namespace NUnitCollectionListTests
             });
         }
 
-        [TestCase(1, 100, new int[] { 2, 3, 6 }, new int[] { 2, 100, 6 })]
-        [TestCase(0, 100, new int[] { 1, 2, 1, 3, 6 }, new int[] { 100, 2, 1, 3, 6 })]
-        [TestCase(7, 100, new int[] { 1, -3, 2, -3, 3, 4, -3, -5 }, new int[] { 1, -3, 2, -3, 3, 4, -3, 100 })]
-        [TestCase(5, 100, new int[] { -3, 67, 5, 9, 67, 0, 67, 9, 87, -1 }, new int[] { -3, 67, 5, 9, 67, 100, 67, 9, 87, -1 })]
-        public void ChangeByIndex_WhenGetList_ShouldChangeValueByIndex(int index, int value, int[] actualArr, int[] expectedArr)
-        {
-            ArrayList actual = ArrayList.Create(actualArr);
-            ArrayList expected = ArrayList.Create(expectedArr);
-
-            actual.ChangeByIndex(index, value);
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestCase(5, 111, new int[] { 11, 22, 33 })]
-        [TestCase(3, 111, new int[] { 11, 22, 33 })]
-        [TestCase(-14, 111, new int[] { 11, 22, 33 })]
-        [TestCase(-1, 111, new int[] { 11, 22, 33 })]
-        public void ChangeByIndex_WhenIndexBigerLengthOrLessZero_ShoudArgumentOutOfRangeException(int index, int value, int[] expectedArr)
-        {
-            Assert.Throws<IndexOutOfRangeException>(() =>
-            {
-                ArrayList actual = ArrayList.Create(expectedArr);
-
-                actual.ChangeByIndex(index, value);
-            });
-        }
-
         [TestCase(new int[] { }, new int[] { })]
         [TestCase(new int[] { 1, 2, 3 }, new int[] { 3, 2, 1 })]
         [TestCase(new int[] { -1, 0, 3 }, new int[] { 3, 0, -1 })]
@@ -372,7 +345,7 @@ namespace NUnitCollectionListTests
             ArrayList actual = ArrayList.Create(actualArr);
             ArrayList expected = ArrayList.Create(expectedArr);
 
-            actual.Revers();
+            actual.Reverse();
             Assert.AreEqual(expected, actual);
         }
 

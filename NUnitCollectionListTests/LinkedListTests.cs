@@ -204,10 +204,10 @@ namespace NUnitCollectionListTests
             });
         }
 
-        //[TestCase(3, new int[] { 1, 2, 3 }, new int[] { })]
-        //[TestCase(2, new int[] { 1, 2, 3 }, new int[] { 1 })]
-        //[TestCase(0, new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 3, 4 })]
-        //[TestCase(1, new int[] { 1, 2, 3, 4, 5, 7, 8 }, new int[] { 1, 2, 3, 4, 5, 7 })]
+        [TestCase(3, new int[] { 1, 2, 3 }, new int[] { })]
+        [TestCase(2, new int[] { 1, 2, 3 }, new int[] { 1 })]
+        [TestCase(0, new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 3, 4 })]
+        [TestCase(1, new int[] { 1, 2, 3, 4, 5, 7, 8 }, new int[] { 1, 2, 3, 4, 5, 7 })]
         [TestCase(5, new int[] { -3, 5, 9, 0, 67, 9, 87, -1 }, new int[] { -3, 5, 9 })]
         public void RemoveLast_WhenGetNElements_ShouldRemoveLastNElements(int nElements, int[] actualArr, int[] expectedArr)
         {

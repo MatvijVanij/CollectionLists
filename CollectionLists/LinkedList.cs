@@ -7,7 +7,6 @@ namespace CollectionLists
     public class LinkedList
     {
         private Node _root;
-
         private Node _tail;
 
         public int Length { get; private set; }
@@ -51,7 +50,6 @@ namespace CollectionLists
 
             if (values.Length != 0)
             {
-
                 _root = new Node(values[0]);
                 _tail = _root;
 
@@ -130,7 +128,7 @@ namespace CollectionLists
             }
             else
             {
-                throw new ArgumentException("null is list for add");
+                throw new ArgumentException("Null is list for add");
             }
         }
 
@@ -174,7 +172,6 @@ namespace CollectionLists
                 {
                     if (list.Length != 0)
                     {
-
                         Node current = GetNodeByIndex(index - 1);
 
                         list._tail.Next = current.Next;
@@ -232,7 +229,6 @@ namespace CollectionLists
                         {
                             Node current = GetNodeByIndex(index - 1);
                             current.Next = current.Next.Next;
-
                         }
                         else
                         {
@@ -399,10 +395,8 @@ namespace CollectionLists
                 }
                 return max;
             }
-            else
-            {
-                throw new ArgumentException("Length is 0 , no elements");
-            }
+
+            throw new ArgumentException("Length is 0 , no elements");
         }
 
         public int FindMinIndex()
@@ -413,10 +407,8 @@ namespace CollectionLists
 
                 return index;
             }
-            else
-            {
-                throw new ArgumentException("Length is 0 , no elements");
-            }
+
+            throw new ArgumentException("Length is 0 , no elements");
         }
 
         public int FindMinElement()
@@ -434,10 +426,9 @@ namespace CollectionLists
                 }
                 return min;
             }
-            else
-            {
-                throw new ArgumentException("Length is 0 , no elements");
-            }
+
+            throw new ArgumentException("Length is 0 , no elements");
+
         }
 
         public void Sort(bool increaseTrueDecreaseFalse)
@@ -540,7 +531,7 @@ namespace CollectionLists
         }
         public override bool Equals(object obj)
         {
-            if (obj is LinkedList || obj is null)
+            if (obj is LinkedList || !(obj is null))
             {
 
                 LinkedList list = (LinkedList)obj;
@@ -560,13 +551,15 @@ namespace CollectionLists
                             iseqvel = false;
                             break;
                         }
+
                         currentList = currentList.Next;
                         currentThis = currentThis.Next;
-
                     }
                 }
+
                 return iseqvel;
             }
+
             throw new ArgumentException("obj is null");
         }
 
@@ -580,7 +573,6 @@ namespace CollectionLists
             return current;
         }
     }
-
 }
 
 
