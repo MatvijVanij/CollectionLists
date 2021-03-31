@@ -29,6 +29,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.AddLast(value);
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -44,6 +45,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.AddLast(list);
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -68,6 +70,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.AddFirst(value);
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -83,6 +86,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.AddFirst(list);
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -108,6 +112,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.AddByIndex(index, value);
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -137,6 +142,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.AddByIndex(index, list);
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -162,6 +168,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList list = DoubleLinkedList.Create(actualArray);
 
             int actual = list.GetIndexByValue(value);
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -175,6 +182,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.ChangeByIndex(index, value);
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -188,6 +196,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.RemoveFirst();
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -202,6 +211,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.RemoveLast();
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -217,6 +227,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.RemoveFirst(nElements);
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -231,6 +242,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.RemoveLast(nElements);
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -244,6 +256,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.RemoveByIndex(index);
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -271,6 +284,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.RemoveByIndex(index, nElements);
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -296,6 +310,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList list = DoubleLinkedList.Create(actualArray);
 
             int actual = list.FindMaxElement();
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -319,6 +334,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList list = DoubleLinkedList.Create(actualArray);
 
             int actual = list.FindMaxIndex();
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -342,6 +358,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList list = DoubleLinkedList.Create(actualArray);
 
             int actual = list.FindMinElement();
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -365,6 +382,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList list = DoubleLinkedList.Create(actualArray);
 
             int actual = list.FindMinIndex();
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -390,6 +408,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.RemoveByValue(value);
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -405,6 +424,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.RemoveAllByValue(value);
+
             Assert.AreEqual(expected,actual);
         }
 
@@ -418,6 +438,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.Reverse();
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -446,6 +467,7 @@ namespace NUnitCollectionListTests
             DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
 
             actual.Sort(true);
+
             Assert.AreEqual(expected,actual);
         }
     }

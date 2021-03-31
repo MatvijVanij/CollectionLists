@@ -28,6 +28,7 @@ namespace NUnitCollectionListTests
             ArrayList expected = ArrayList.Create(expectedArr);
 
             actual.AddLast(value);
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -43,6 +44,7 @@ namespace NUnitCollectionListTests
             ArrayList expected = ArrayList.Create(expectedArr);
 
             actual.AddLast(list);
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -56,6 +58,7 @@ namespace NUnitCollectionListTests
             ArrayList expected = ArrayList.Create(expectedArr);
 
             actual.AddFirst(value);
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -71,6 +74,7 @@ namespace NUnitCollectionListTests
             ArrayList expected = ArrayList.Create(expectedArr);
 
             actual.AddFirst(list);
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -84,6 +88,7 @@ namespace NUnitCollectionListTests
             ArrayList expected = ArrayList.Create(expectedArr);
 
             actual.AddByIndex(index, value);
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -110,6 +115,7 @@ namespace NUnitCollectionListTests
             ArrayList expected = ArrayList.Create(expectedArr);
 
             actual.AddByIndex(index, list);
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -137,6 +143,7 @@ namespace NUnitCollectionListTests
             ArrayList expected = ArrayList.Create(expectedArr);
 
             actual.RemoveLast();
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -150,6 +157,7 @@ namespace NUnitCollectionListTests
             ArrayList expected = ArrayList.Create(expectedArr);
 
             actual.RemoveFirst();
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -163,6 +171,7 @@ namespace NUnitCollectionListTests
             ArrayList expected = ArrayList.Create(expectedArr);
 
             actual.RemoveByIndex(index);
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -189,6 +198,7 @@ namespace NUnitCollectionListTests
             ArrayList expected = ArrayList.Create(expectedArr);
 
             actual.RemoveLast(nElements);
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -202,6 +212,7 @@ namespace NUnitCollectionListTests
             ArrayList expected = ArrayList.Create(expectedArr);
 
             actual.RemoveFirst(nElements);
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -215,6 +226,7 @@ namespace NUnitCollectionListTests
             ArrayList expected = ArrayList.Create(expectedArr);
 
             actual.RemoveByIndex(index, nElements);
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -241,6 +253,7 @@ namespace NUnitCollectionListTests
             ArrayList array = ArrayList.Create(actualArray);
 
             int actual = array.GetIndexByValue(value);
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -253,6 +266,7 @@ namespace NUnitCollectionListTests
             ArrayList array = ArrayList.Create(actualArray);
 
             int actual = array.FindMaxElement();
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -276,6 +290,7 @@ namespace NUnitCollectionListTests
             ArrayList array = ArrayList.Create(actualArray);
 
             int actual = array.FindMaxIndex();
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -299,6 +314,7 @@ namespace NUnitCollectionListTests
             ArrayList array = ArrayList.Create(actualArray);
 
             int actual = array.FindMinElement();
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -322,6 +338,7 @@ namespace NUnitCollectionListTests
             ArrayList array = ArrayList.Create(actualArray);
 
             int actual = array.FindMinIndex();
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -346,6 +363,7 @@ namespace NUnitCollectionListTests
             ArrayList expected = ArrayList.Create(expectedArr);
 
             actual.Reverse();
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -359,6 +377,7 @@ namespace NUnitCollectionListTests
             ArrayList expected = ArrayList.Create(expectedArr);
 
             actual.Sort(false);
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -372,6 +391,7 @@ namespace NUnitCollectionListTests
             ArrayList expected = ArrayList.Create(expectedArr);
 
             actual.Sort(true);
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -385,6 +405,7 @@ namespace NUnitCollectionListTests
             ArrayList expected = ArrayList.Create(expectedArr);
 
             actual.RemoveByValue(value);
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -399,6 +420,7 @@ namespace NUnitCollectionListTests
             ArrayList expected = ArrayList.Create(expectedArr);
 
             actual.RemoveAllByValue(value);
+
             Assert.AreEqual(expected, actual);
         }
     }
