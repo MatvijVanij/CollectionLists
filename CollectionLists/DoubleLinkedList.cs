@@ -134,7 +134,6 @@ namespace CollectionLists
                 _root = new DoubleNode(value);
                 _tail = _root;
             }
-
         }
 
         public void AddFirst(DoubleLinkedList list)

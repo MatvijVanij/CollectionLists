@@ -428,7 +428,6 @@ namespace CollectionLists
             }
 
             throw new ArgumentException("Length is 0 , no elements");
-
         }
 
         public void Sort(bool increaseTrueDecreaseFalse)
@@ -527,8 +526,8 @@ namespace CollectionLists
             }
 
             return String.Empty;
-
         }
+
         public override bool Equals(object obj)
         {
             if (obj is LinkedList || !(obj is null))

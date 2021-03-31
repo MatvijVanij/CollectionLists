@@ -46,7 +46,6 @@ namespace CollectionLists
             {
                 throw new ArgumentException("No null in on");
             }
-
         }
 
         public int this[int index]
@@ -110,6 +109,7 @@ namespace CollectionLists
         public void AddFirst(ArrayList list)
         {
             int oldLength = Length;
+
             Length += list.Length;
             Resize(oldLength);
             ShiftRight(list.Length - 1, list.Length);
@@ -178,6 +178,7 @@ namespace CollectionLists
                 Length--;
                 ShiftLeft(index, nElement);
             }
+
             Resize(Length);
         }
 
@@ -394,10 +395,10 @@ namespace CollectionLists
                     }
                 }
                 return true;
-        }
+            }
 
             throw new ArgumentException("obj is null");
-    }
+        }
 
         private void Resize(int oldLength)
         {
