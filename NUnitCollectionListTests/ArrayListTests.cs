@@ -6,9 +6,30 @@ namespace NUnitCollectionListTests
 {
     public class ArrayListTests
     {
+        [Test]
+        public void Create_WhenIndexBigerLengthOrLessZero_ShoudArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                ArrayList actual = ArrayList.Create(null);
+            });
+        }
+
+        [TestCase(-2, new int[] { 1, 2, 3 }, 99)]
+        [TestCase(4, new int[] { 1, 3, 4 }, 99)]
+        public void IndexerGet_WhenIndexBigerLengthOrLessZero_ShoudArgumentOutOfRangeException(int index, int[] actualAr, int value)
+        {
+            Assert.Throws<IndexOutOfRangeException>(() =>
+            {
+                ArrayList actual = ArrayList.Create(actualAr);
+
+                actual[index]++;
+            });
+        }
+
         [TestCase(-1, new int[] { 1, 2, 3 }, 99)]
         [TestCase(4, new int[] { 1, 3, 4 }, 99)]
-        public void Indexer_WhenIndexBigerLengthOrLessZero_ShoudArgumentOutOfRangeException(int index, int[] actualAr, int value)
+        public void IndexerSet_WhenIndexBigerLengthOrLessZero_ShoudArgumentOutOfRangeException(int index, int[] actualAr, int value)
         {
             Assert.Throws<IndexOutOfRangeException>(() =>
             {
@@ -188,6 +209,7 @@ namespace NUnitCollectionListTests
             });
         }
 
+        [TestCase(2, new int[] { }, new int[] { })]
         [TestCase(2, new int[] { 1, 2, 3 }, new int[] { 1 })]
         [TestCase(0, new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 3, 4 })]
         [TestCase(1, new int[] { 1, 2, 3, 4, 5, 7, 8 }, new int[] { 1, 2, 3, 4, 5, 7 })]
@@ -216,6 +238,7 @@ namespace NUnitCollectionListTests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(1, 2, new int[] { 1, 2, 3, 6 }, new int[] { 1, 6 })]
         [TestCase(1, 2, new int[] { 1, 2, 3, 6 }, new int[] { 1, 6 })]
         [TestCase(0, 4, new int[] { 1, 2, 3, 4, -3, -5 }, new int[] { -3, -5 })]
         [TestCase(0, 6, new int[] { 1, 2, 3, 5, 7, 8 }, new int[] { })]

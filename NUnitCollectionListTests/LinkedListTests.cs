@@ -7,9 +7,18 @@ namespace NUnitCollectionListTests
 {
     class LinkedListTests
     {
+        [Test]
+        public void Create_WhenIndexBigerLengthOrLessZero_ShoudArgumentException()
+        {
+            Assert.Throws<NullReferenceException>(() =>
+            {
+                LinkedList actual = LinkedList.Create(null);
+            });
+        }
+
         [TestCase(-1, new int[] { 1, 2, 3 }, 99)]
         [TestCase(4, new int[] { 1, 3, 4 }, 99)]
-        public void Indexer_WhenIndexBigerLengthOrLessZero_ShoudArgumentOutOfRangeException(int index, int[] actualAr, int value)
+        public void IndexerSet_WhenIndexBigerLengthOrLessZero_ShoudArgumentOutOfRangeException(int index, int[] actualAr, int value)
         {
             Assert.Throws<IndexOutOfRangeException>(() =>
             {
@@ -18,6 +27,19 @@ namespace NUnitCollectionListTests
                 actual[index] = value;
             });
         }
+
+        [TestCase(-2, new int[] { 1, 2, 3 }, 99)]
+        [TestCase(4, new int[] { 1, 3, 4 }, 99)]
+        public void IndexerGet_WhenIndexBigerLengthOrLessZero_ShoudArgumentOutOfRangeException(int index, int[] actualAr, int value)
+        {
+            Assert.Throws<IndexOutOfRangeException>(() =>
+            {
+                LinkedList actual = LinkedList.Create(actualAr);
+
+                actual[index]++;
+            });
+        }
+
 
         [TestCase(99, new int[] { }, new int[] { 99 })]
         [TestCase(-11, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3, -11 })]
@@ -30,7 +52,7 @@ namespace NUnitCollectionListTests
 
             actual.AddLast(value);
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(new int[] { 11, 22, 33 }, new int[] { 1 }, new int[] { 1, 11, 22, 33 })]
@@ -46,7 +68,7 @@ namespace NUnitCollectionListTests
 
             actual.AddLast(list);
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(new int[] { 77 })]
@@ -72,7 +94,7 @@ namespace NUnitCollectionListTests
 
             actual.AddFirst(value);
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(new int[] { 11, 22, 33 }, new int[] { 1 }, new int[] { 11, 22, 33, 1 })]
@@ -87,7 +109,7 @@ namespace NUnitCollectionListTests
             LinkedList expected = LinkedList.Create(expectedArr);
 
             actual.AddFirst(list);
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(new int[] { 77, 88, 88, 999, 0 })]
@@ -101,6 +123,7 @@ namespace NUnitCollectionListTests
             });
         }
 
+        [TestCase(0, 99, new int[] { }, new int[] { 99 })]
         [TestCase(2, 99, new int[] { 1, 2, 3 }, new int[] { 1, 2, 99, 3 })]
         [TestCase(4, 99, new int[] { -1, 2, 0, 4, 4 }, new int[] { -1, 2, 0, 4, 99, 4 })]
         [TestCase(0, 99, new int[] { 1, 2, 3, 5, 7, 8 }, new int[] { 99, 1, 2, 3, 5, 7, 8 })]
@@ -112,7 +135,7 @@ namespace NUnitCollectionListTests
 
             actual.AddByIndex(index, value);
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(5, 11, new int[] { 11, 22, 33 })]
@@ -129,10 +152,8 @@ namespace NUnitCollectionListTests
 
         [TestCase(2, new int[] { }, new int[] { 11, 22, 33 }, new int[] { 11, 22, 33 })]
         [TestCase(0, new int[] { }, new int[] { 11, 22, 33 }, new int[] { 11, 22, 33 })]
-        [TestCase(2, new int[] { 11, 22, 33 }, new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 11, 22, 33, 3, 4 })]
         [TestCase(0, new int[] { 11, 22, 33 }, new int[] { 1, 2, 3, 4 }, new int[] { 11, 22, 33, 1, 2, 3, 4 })]
-        [TestCase(2, new int[] { 11, 22, 33 }, new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 11, 22, 33, 3, 4 })]
-        [TestCase(3, new int[] { 11, 22, 33 }, new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 3, 11, 22, 33 ,4})]
+        [TestCase(3, new int[] { 11, 22, 33 }, new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 3, 11, 22, 33, 4 })]
         public void AddByIndex_WhenGetList_ShouldAddByIndex(int index, int[] newlist, int[] actualArr, int[] expectedArr)
         {
             LinkedList list = LinkedList.Create(newlist);
@@ -141,7 +162,7 @@ namespace NUnitCollectionListTests
 
             actual.AddByIndex(index, list);
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(5, new int[] { 11, 22, 33 }, new int[] { 1, 2, 3 })]
@@ -169,7 +190,7 @@ namespace NUnitCollectionListTests
 
             actual.RemoveLast();
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(new int[] { }, new int[] { })]
@@ -183,7 +204,7 @@ namespace NUnitCollectionListTests
 
             actual.RemoveFirst();
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(0, new int[] { 1, 2, 3 }, new int[] { 2, 3 })]
@@ -197,7 +218,7 @@ namespace NUnitCollectionListTests
 
             actual.RemoveByIndex(index);
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(5, new int[] { 11, 22, 33 })]
@@ -224,7 +245,7 @@ namespace NUnitCollectionListTests
 
             actual.RemoveLast(nElements);
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(1, new int[] { 1, 2, 3 }, new int[] { 2, 3 })]
@@ -239,9 +260,10 @@ namespace NUnitCollectionListTests
 
             actual.RemoveFirst(nElements);
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(0, 2, new int[] { 1 }, new int[] { })]
         [TestCase(1, 2, new int[] { 1, 2, 3, 6 }, new int[] { 1, 6 })]
         [TestCase(0, 4, new int[] { 1, 2, 3, 4, -3, -5 }, new int[] { -3, -5 })]
         [TestCase(0, 4, new int[] { 1, 2, 3, 4, -3, -5 }, new int[] { -3, -5 })]
@@ -255,7 +277,7 @@ namespace NUnitCollectionListTests
 
             actual.RemoveByIndex(index, nElements);
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(5, 1, new int[] { 11, 22, 33 })]
@@ -282,7 +304,7 @@ namespace NUnitCollectionListTests
 
             actual.ChangeByIndex(index, value);
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(33, 2, new int[] { 1, 2, 33, 6, 6 })]
@@ -295,7 +317,7 @@ namespace NUnitCollectionListTests
 
             int actual = list.GetIndexByValue(value);
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(6, new int[] { 1, 2, 3, 6, 6 })]
@@ -308,7 +330,7 @@ namespace NUnitCollectionListTests
 
             int actual = list.FindMaxElement();
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(new int[] { })]
@@ -332,7 +354,7 @@ namespace NUnitCollectionListTests
 
             int actual = list.FindMaxIndex();
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(new int[] { })]
@@ -356,7 +378,7 @@ namespace NUnitCollectionListTests
 
             int actual = list.FindMinElement();
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(new int[] { })]
@@ -380,7 +402,7 @@ namespace NUnitCollectionListTests
 
             int actual = list.FindMinIndex();
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(new int[] { })]
@@ -405,7 +427,7 @@ namespace NUnitCollectionListTests
 
             actual.Revers();
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -431,7 +453,7 @@ namespace NUnitCollectionListTests
 
             actual.Sort(false);
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(new int[] { }, new int[] { })]
@@ -446,7 +468,7 @@ namespace NUnitCollectionListTests
 
             actual.Sort(true);
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(4, new int[] { 1, 2, 3, 6 }, new int[] { 1, 2, 3, 6 })]
@@ -461,7 +483,7 @@ namespace NUnitCollectionListTests
 
             actual.RemoveByValue(value);
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestCase(4, new int[] { 2, 3, 6 }, new int[] { 2, 3, 6 })]
@@ -477,7 +499,7 @@ namespace NUnitCollectionListTests
 
             actual.RemoveAllByValue(value);
 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
     }
 }

@@ -15,7 +15,14 @@ namespace CollectionLists
         {
             get
             {
-                return GetNodeByIndex(index).Value;
+                if (index >= 0 && index < Length)
+                {
+                    return GetNodeByIndex(index).Value;
+                }
+                else
+                {
+                    throw new IndexOutOfRangeException("string.Empty");
+                }
             }
             set
             {
@@ -149,12 +156,11 @@ namespace CollectionLists
             {
                 throw new ArgumentException("Null is list for add");
             }
-
         }
 
         public void AddByIndex(int index, int value)
         {
-            if (index >= 0 && index < Length)
+            if (index >= 0 && index <= Length)
             {
                 if (index != 0)
                 {
@@ -189,7 +195,7 @@ namespace CollectionLists
 
         public void AddByIndex(int index, DoubleLinkedList list)
         {
-            if (index >= 0 && index < Length)
+            if (index >= 0 && index <= Length)
             {
                 if (index != 0)
                 {
