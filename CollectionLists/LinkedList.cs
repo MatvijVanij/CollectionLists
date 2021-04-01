@@ -539,7 +539,6 @@ namespace CollectionLists
         {
             if (obj is LinkedList || !(obj is null))
             {
-
                 LinkedList list = (LinkedList)obj;
                 bool iseqvel = false;
 
