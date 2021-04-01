@@ -510,6 +510,28 @@ namespace NUnitCollectionListTests
 
             Assert.AreEqual(expected, actual.ToString());
         }
+
+        [TestCase(new int[] { })]
+        public void Equal_WhenGetNullList_ShoudArgumentException(int[] expectedArr)
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                LinkedList actual = LinkedList.Create(expectedArr);
+
+                actual.Equals(null);
+            });
+        }
+
+        [TestCase(new int[] { -9, 4, -8 }, new int[] { -9, -8, 8, 4 })]
+        public void Equal_WhenGetList_ShouldSortIncrease(int[] actualArr, int[] expectedArr)
+        {
+            DoubleLinkedList actual = DoubleLinkedList.Create(actualArr);
+            DoubleLinkedList expected = DoubleLinkedList.Create(expectedArr);
+
+            var result = expected.Equals(actual);
+
+            Assert.False(result);
+        }
     }
 }
 
