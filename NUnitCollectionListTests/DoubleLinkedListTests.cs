@@ -492,6 +492,15 @@ namespace NUnitCollectionListTests
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(new int[] { }, "")]
+        [TestCase(new int[] { -3, 67, 5, 9, 67, 0, 67, 9, 87, -1 }, "-3 67 5 9 67 0 67 9 87 -1")]
+        public void ToString_WhenGetNullLength_ShoudString(int[] expectedArr, string expected)
+        {
+            DoubleLinkedList actual = DoubleLinkedList.Create(expectedArr);
+
+            Assert.AreEqual(expected, actual.ToString());
+        }
     }
 }
 

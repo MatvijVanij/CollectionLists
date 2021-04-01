@@ -522,12 +522,12 @@ namespace CollectionLists
             {
                 Node current = _root;
 
-                StringBuilder stringBuilder = new StringBuilder($"{current.Value}");
+                StringBuilder stringBuilder = new StringBuilder($"{current.Value} ");
 
                 while (!(current.Next is null))
                 {
                     current = current.Next;
-                    stringBuilder.Append($"{current.Value}");
+                    stringBuilder.Append($"{current.Value} ");
                 }
                 return stringBuilder.ToString().Trim();
             }

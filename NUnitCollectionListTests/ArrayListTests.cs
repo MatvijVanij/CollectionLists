@@ -238,6 +238,7 @@ namespace NUnitCollectionListTests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(1, 200, new int[] { 1, 2, 3, 6 }, new int[] { 1 })]
         [TestCase(1, 2, new int[] { 1, 2, 3, 6 }, new int[] { 1, 6 })]
         [TestCase(1, 2, new int[] { 1, 2, 3, 6 }, new int[] { 1, 6 })]
         [TestCase(0, 4, new int[] { 1, 2, 3, 4, -3, -5 }, new int[] { -3, -5 })]
@@ -254,12 +255,21 @@ namespace NUnitCollectionListTests
         }
 
         [TestCase(5, 1, new int[] { 11, 22, 33 })]
-        [TestCase(0, 7, new int[] { 11, 22, 33 })]
         [TestCase(-14, 1, new int[] { 11, 22, 33 })]
-        [TestCase(0, 4, new int[] { 11, 22, 33 })]
         public void RemoveByIndex_WhenindexBigerLengthOrLessZero_ShoudArgumentOutOfRangeException(int index, int nElements, int[] expectedArr)
         {
             Assert.Throws<IndexOutOfRangeException>(() =>
+            {
+                ArrayList actual = ArrayList.Create(expectedArr);
+
+                actual.RemoveByIndex(index, nElements);
+            });
+        }
+
+        [TestCase(-14, -1, new int[] { 11, 22, 33 })]
+        public void RemoveByIndex_WhenindexBigerLengthOrLessZero_ShoudArgumentException(int index, int nElements, int[] expectedArr)
+        {
+            Assert.Throws<ArgumentException>(() =>
             {
                 ArrayList actual = ArrayList.Create(expectedArr);
 
@@ -446,5 +456,15 @@ namespace NUnitCollectionListTests
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(new int[] { }, "")]
+        [TestCase(new int[] { -3, 67, 5, 9, 67, 0, 67, 9, 87, -1 }, "-3 67 5 9 67 0 67 9 87 -1")]
+        public void ToString_WhenGetNullLength_ShoudString(int[] expectedArr, string expected)
+        {
+            ArrayList actual = ArrayList.Create(expectedArr);
+
+            Assert.AreEqual(expected, actual.ToString());
+        }
+
     }
 }

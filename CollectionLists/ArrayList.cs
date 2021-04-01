@@ -238,23 +238,29 @@ namespace CollectionLists
 
         public void RemoveByIndex(int index, int nElelements)
         {
-            if (index >= 0 && index < Length - nElelements + 1)
+            if (nElelements >= 0)
             {
-                if (Length - index >= nElelements)
+                if ((index == 0 && Length == 0) || (index >= 0 && index < Length))
                 {
-                    Length -= nElelements;
-                    ShiftLeft(index, nElelements);
+                    if (Length - index >= nElelements)
+                    {
+                        Length -= nElelements;
+                        ShiftLeft(index, nElelements);
+                    }
+                    else
+                    {
+                        Length = index;
+                    }
+                    Resize(Length);
                 }
                 else
                 {
-                    Length = index;
+                    throw new IndexOutOfRangeException();
                 }
-
-                Resize(Length);
             }
-            else
+            else 
             {
-                throw new IndexOutOfRangeException();
+                throw new ArgumentException("in corect counts elements");
             }
         }
 
@@ -363,12 +369,13 @@ namespace CollectionLists
         {
             if (Length != 0)
             {
-                StringBuilder stringBuilder = new StringBuilder($"{_array[Length]}");
+                StringBuilder stringBuilder = new StringBuilder();
 
                 for (int i = 0; i < Length; i++)
                 {
-                    stringBuilder.Append($"{_array[i]}");
+                    stringBuilder.Append($"{_array[i]} ");
                 }
+
                 return stringBuilder.ToString().Trim();
             }
 
@@ -394,10 +401,10 @@ namespace CollectionLists
                     }
                 }
                 return true;
-        }
+            }
 
             throw new ArgumentException("obj is null");
-    }
+        }
 
         private void Resize(int oldLength)
         {

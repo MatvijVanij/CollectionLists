@@ -325,10 +325,11 @@ namespace CollectionLists
 
         public void RemoveByIndex(int index, int nElements)
         {
-            if (index >= 0 && index < Length)
+            if ((index == 0 && Length == 0) || (index >= 0 && index < Length))
             {
                 if (Length > nElements)
                 {
+
                     if (Length > index + nElements)
                     {
                         if (index != 0)
@@ -584,12 +585,12 @@ namespace CollectionLists
             if (Length != 0)
             {
                 DoubleNode current = _root;
-                StringBuilder stringBuilder = new StringBuilder($"{current.Value}");
+                StringBuilder stringBuilder = new StringBuilder($"{current.Value} ");
 
                 while (!(current.Next is null))
                 {
                     current = current.Next;
-                    stringBuilder.Append($"{current.Value}");
+                    stringBuilder.Append($"{current.Value} ");
                 }
 
                 return stringBuilder.ToString().Trim();
