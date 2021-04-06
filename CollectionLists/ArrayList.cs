@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace CollectionLists
 {
     public class ArrayList
     {
+        public const int firstValue = 10;
+        private const string IndexOutOfRangeMessage = "Index Out Of Range";
         private int[] _array;
 
-        public const int firstValue = 10;
         public int Length { get; private set; }
 
         public ArrayList()
@@ -30,9 +30,9 @@ namespace CollectionLists
             Length = 0;
             _array = new int[initArray.Length];
 
-            for (int i = 0; i < initArray.Length; i++)
+            foreach (var item in initArray)
             {
-                AddLast(initArray[i]);
+                _array[Length++] = item;
             }
         }
 
@@ -133,7 +133,7 @@ namespace CollectionLists
             }
             else
             {
-                throw new IndexOutOfRangeException("Index Out Of Randge ");
+                throw new IndexOutOfRangeException(IndexOutOfRangeMessage);
             }
         }
 
@@ -154,7 +154,7 @@ namespace CollectionLists
             }
             else
             {
-                throw new IndexOutOfRangeException("Index Out Of Randge ");
+                throw new IndexOutOfRangeException(IndexOutOfRangeMessage);
             }
         }
 
@@ -197,7 +197,7 @@ namespace CollectionLists
             }
             else
             {
-                throw new IndexOutOfRangeException("Index Out Of Randge ");
+                throw new IndexOutOfRangeException(IndexOutOfRangeMessage);
             }
         }
 
@@ -240,7 +240,7 @@ namespace CollectionLists
         {
             if (nElelements >= 0)
             {
-                if ((index == 0 && Length == 0) || (index >= 0 && index < Length))
+                if (index >= 0 && index < Length)
                 {
                     if (Length - index >= nElelements)
                     {
@@ -351,13 +351,15 @@ namespace CollectionLists
             }
         }
 
-        public void Sort(bool increaseTrueDecreaseFalse)
+        public void Sort(bool ascending)
         {
+            var coef = ascending ? 1 : -1;
+
             for (int i = 0; i < Length - 1; i++)
             {
                 for (int j = i + 1; j < Length; j++)
                 {
-                    if ((_array[i] > _array[j] && increaseTrueDecreaseFalse) || (_array[i] < _array[j] && !increaseTrueDecreaseFalse))
+                    if (_array[i].CompareTo(_array[j]) == coef)
                     {
                         Swap(ref _array[i], ref _array[j]);
                     }
@@ -379,7 +381,7 @@ namespace CollectionLists
                 return stringBuilder.ToString().Trim();
             }
 
-            return String.Empty;
+            return string.Empty;
         }
 
         public override bool Equals(object obj)
@@ -388,18 +390,19 @@ namespace CollectionLists
             {
                 ArrayList List = (ArrayList)obj;
 
-                if (this.Length != List.Length)
+                if (Length != List.Length)
                 {
                     return false;
                 }
 
                 for (int i = 0; i < Length; i++)
                 {
-                    if (this._array[i] != List._array[i])
+                    if (_array[i] != List._array[i])
                     {
                         return false;
                     }
                 }
+
                 return true;
             }
 
@@ -422,11 +425,11 @@ namespace CollectionLists
             }
         }
 
-        private static void Swap(ref int indexI, ref int indexJ)
+        private static void Swap(ref int a, ref int b)
         {
-            int c = indexI;
-            indexI = indexJ;
-            indexJ = c;
+            int temp = a;
+            a = b;
+            b = temp;
         }
 
         private void ShiftRight(int index, int nElements)
@@ -443,6 +446,11 @@ namespace CollectionLists
             {
                 _array[i] = _array[i + nElements];
             }
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(_array, Length);
         }
     }
 }

@@ -425,7 +425,7 @@ namespace NUnitCollectionListTests
             LinkedList actual = LinkedList.Create(actualArr);
             LinkedList expected = LinkedList.Create(expectedArr);
 
-            actual.Revers();
+            actual.Reverse();
 
             Assert.AreEqual(expected, actual);
         }
@@ -437,7 +437,7 @@ namespace NUnitCollectionListTests
             {
                 LinkedList actual = LinkedList.Create(null);
 
-                actual.Revers();
+                actual.Reverse();
             });
         }
 

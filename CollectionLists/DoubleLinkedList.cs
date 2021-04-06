@@ -21,7 +21,7 @@ namespace CollectionLists
                 }
                 else
                 {
-                    throw new IndexOutOfRangeException("string.Empty");
+                    throw new IndexOutOfRangeException(nameof(string.Empty));
                 }
             }
             set
@@ -516,6 +516,7 @@ namespace CollectionLists
                         current.Next = node;
                     }
                 }
+
                 _root = new_root;
             }
             else
@@ -621,6 +622,7 @@ namespace CollectionLists
                     current = current.Previous;
                 }
             }
+
             return current;
         }
     }

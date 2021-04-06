@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace CollectionLists
@@ -15,18 +14,18 @@ namespace CollectionLists
         {
             get
             {
-                if (index >= 0 && index <= Length)
+                if (index >= 0 && index < Length)
                 {
                     return GetNodeByIndex(index).Value;
                 }
                 else
                 {
-                    throw new IndexOutOfRangeException("");
+                    throw new IndexOutOfRangeException(string.Empty);
                 }
             }
             set
             {
-                if (index >= 0 && index <= Length)
+                if (index >= 0 && index < Length)
                 {
                     GetNodeByIndex(index).Value = value;
                 }
@@ -347,7 +346,7 @@ namespace CollectionLists
             GetNodeByIndex(index).Value = value;
         }
 
-        public void Revers()
+        public void Reverse()
         {
             if (!(this is null))
             {
@@ -370,7 +369,7 @@ namespace CollectionLists
             }
             else
             {
-                throw new NullReferenceException(" List is null!");
+                throw new NullReferenceException("List is null!");
             }
         }
 
@@ -565,7 +564,7 @@ namespace CollectionLists
                 return iseqvel;
             }
 
-            throw new ArgumentException("obj is null");
+            throw new ArgumentException("Obj is null");
         }
 
         private Node GetNodeByIndex(int index)
@@ -579,5 +578,3 @@ namespace CollectionLists
         }
     }
 }
-
-
